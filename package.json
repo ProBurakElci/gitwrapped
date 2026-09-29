@@ -1,0 +1,24 @@
+{
+  "name": "gitwrapped",
+  "version": "1.0.0",
+  "description": "What your git history says about how you work: peak hours, streaks, longest session, the files you keep coming back to. Prints a card, writes a shareable SVG, runs entirely offline.",
+  "bin": {
+    "gitwrapped": "bin/gitwrapped.js"
+  },
+  "main": "lib/stats.js",
+  "files": ["bin", "lib", "README.md", "LICENSE"],
+  "scripts": {
+    "test": "node test/run-tests.js"
+  },
+  "keywords": [
+    "git", "statistics", "git-stats", "wrapped", "commit-history",
+    "developer-tools", "cli", "analytics", "productivity", "zero-dependencies"
+  ],
+  "license": "MIT",
+  "engines": { "node": ">=14" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProBurakElci/gitwrapped.git"
+  },
+  "homepage": "https://github.com/ProBurakElci/gitwrapped#readme"
+}
