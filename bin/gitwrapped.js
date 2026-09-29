@@ -114,8 +114,12 @@ function main() {
     return 0;
   }
 
+  // FORCE_COLOR lets a recorder or a pipe keep the colours, the same way most
+  // CLI tools treat it.
+  const forced = process.env.FORCE_COLOR && process.env.FORCE_COLOR !== "0";
   console.log(terminal.render(stats, meta, {
-    noColor: options.noColor || !!process.env.NO_COLOR || !process.stdout.isTTY,
+    noColor: options.noColor || !!process.env.NO_COLOR ||
+      (!forced && !process.stdout.isTTY),
   }));
 
   if (options.svg) {

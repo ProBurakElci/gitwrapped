@@ -155,6 +155,18 @@ ok("every line fits in 80 columns", card.split("\n").every((l) => l.length <= 80
 const colored = terminal.render(stats, meta, { noColor: false });
 ok("colors are emitted when asked", colored.includes("\u001b["));
 
+// Escape sequences take up no columns. If the width maths counts them, every
+// value drifts left the moment colours are on - which only shows up in a real
+// terminal, so it gets a test.
+const strip = (text) => text.replace(/\u001b\[[0-9;]*m/g, "");
+const plainLines = card.split("\n");
+const coloredLines = colored.split("\n").map(strip);
+ok(
+  "coloured output aligns exactly like plain output",
+  plainLines.length === coloredLines.length &&
+    plainLines.every((l, i) => l === coloredLines[i])
+);
+
 const card2 = svg.render(stats, meta);
 ok("svg has the right dimensions", card2.includes('width="1200"') && card2.includes('height="630"'));
 ok("svg is well formed at the edges", card2.startsWith("<svg") && card2.endsWith("</svg>"));
